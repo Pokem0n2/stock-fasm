@@ -1033,10 +1033,10 @@ wndproc:                                ; (hwnd,msg,w,l)
         push    tmpbuf
         apicall API_wsprintfA
         add     esp,12                  ; cdecl
-        push    tmpbuf
-        push    keyx
-        push    sec
-        push    ini_path
+        push    ini_path                ; lpFileName
+        push    tmpbuf                  ; lpString
+        push    keyx                    ; lpKeyName
+        push    sec                     ; lpAppName
         apicall API_WritePrivateProfileStringA
         mov     eax,[esp+4]             ; top
         push    eax
@@ -1044,10 +1044,10 @@ wndproc:                                ; (hwnd,msg,w,l)
         push    tmpbuf
         apicall API_wsprintfA
         add     esp,12
-        push    tmpbuf
-        push    keyy
-        push    sec
-        push    ini_path
+        push    ini_path                ; lpFileName
+        push    tmpbuf                  ; lpString
+        push    keyy                    ; lpKeyName
+        push    sec                     ; lpAppName
         apicall API_WritePrivateProfileStringA
         mov     eax,[esp+16+4]          ; hwnd
         push    eax
